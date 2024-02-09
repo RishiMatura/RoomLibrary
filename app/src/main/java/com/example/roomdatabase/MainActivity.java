@@ -33,6 +33,7 @@ public class MainActivity extends AppCompatActivity {
                 String amount = edAmount.getText().toString();
 
 
+
                 databaseHelper.expenseDAO().addTx(
                         new Expense(title,amount)
                 );
