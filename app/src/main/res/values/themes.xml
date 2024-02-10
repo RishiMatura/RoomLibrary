@@ -6,4 +6,10 @@
     </style>
 
     <style name="Theme.RoomDatabase" parent="Base.Theme.RoomDatabase" />
+    <style name="Theme.RoomDatabase.NoActionBar">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+    </style>
+    <style name="Theme.RoomDatabase.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
+    <style name="Theme.RoomDatabase.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
 </resources>
