@@ -24,8 +24,9 @@ public class RecyclerExpenseAdapter extends RecyclerView.Adapter<RecyclerExpense
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
 
-        LayoutInflater.from(context).inflate(R.layout.rows, parent, false);
-        return null;
+        View view = LayoutInflater.from(context).inflate(R.layout.rows, parent, false);
+        ViewHolder viewHolder = new ViewHolder(view);
+        return viewHolder;
     }
 
     @Override
