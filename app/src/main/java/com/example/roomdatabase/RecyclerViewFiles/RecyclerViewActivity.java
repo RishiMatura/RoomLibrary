@@ -24,8 +24,29 @@ public class RecyclerViewActivity extends AppCompatActivity {
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         ExpenseModel item1 = new ExpenseModel("Burger", "60");
 
-        expenseModelArrayList.add(item1);
+        expenseModelArrayList.add(new ExpenseModel("Burger", "60"));
+        expenseModelArrayList.add(new ExpenseModel("Burger", "60"));
+        expenseModelArrayList.add(new ExpenseModel("Burger", "60"));
+        expenseModelArrayList.add(new ExpenseModel("Burger", "60"));
+        expenseModelArrayList.add(new ExpenseModel("Burger", "60"));
+        expenseModelArrayList.add(new ExpenseModel("Burger", "60"));
+        expenseModelArrayList.add(new ExpenseModel("Burger", "60"));
+        expenseModelArrayList.add(new ExpenseModel("Burger", "60"));
+        expenseModelArrayList.add(new ExpenseModel("Burger", "60"));
+        expenseModelArrayList.add(new ExpenseModel("Burger", "60"));
+        expenseModelArrayList.add(new ExpenseModel("Burger", "60"));
+        expenseModelArrayList.add(new ExpenseModel("Burger", "60"));
+        expenseModelArrayList.add(new ExpenseModel("Burger", "60"));
+        expenseModelArrayList.add(new ExpenseModel("Burger", "60"));
+        expenseModelArrayList.add(new ExpenseModel("Burger", "60"));
+        expenseModelArrayList.add(new ExpenseModel("Burger", "60"));
+        expenseModelArrayList.add(new ExpenseModel("Burger", "60"));
+        expenseModelArrayList.add(new ExpenseModel("Burger", "60"));
+        expenseModelArrayList.add(new ExpenseModel("Burger", "60"));
+        expenseModelArrayList.add(new ExpenseModel("Burger", "60"));
 
+        RecyclerExpenseAdapter adapter= new RecyclerExpenseAdapter(this, expenseModelArrayList);
+        recyclerView.setAdapter(adapter);
     }
 
 }
