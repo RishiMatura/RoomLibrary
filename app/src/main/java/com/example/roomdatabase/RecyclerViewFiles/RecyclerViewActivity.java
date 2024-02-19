@@ -5,10 +5,14 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
+import android.util.Log;
 
+import com.example.roomdatabase.DatabaseHelper;
+import com.example.roomdatabase.Expense;
 import com.example.roomdatabase.R;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class RecyclerViewActivity extends AppCompatActivity {
     RecyclerView recyclerView;
@@ -22,30 +26,17 @@ public class RecyclerViewActivity extends AppCompatActivity {
         recyclerView = findViewById(R.id.recyclerExpense);
 
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
+
+        DatabaseHelper databaseHelper =  DatabaseHelper.getDB(this);
+        RecyclerExpenseAdapter adapter= new RecyclerExpenseAdapter(this, expenseModelArrayList);
+
+        ArrayList<Expense> arrExpense = (ArrayList<Expense>) databaseHelper.expenseDAO().getAllExpense();
+        for (Expense expense : arrExpense) {
+            expenseModelArrayList.add(new ExpenseModel(expense.getTitle(), expense.getAmount()));
+        }
         ExpenseModel item1 = new ExpenseModel("Burger", "60");
 
-        expenseModelArrayList.add(new ExpenseModel("Food", "60"));
-        expenseModelArrayList.add(new ExpenseModel("Food", "60"));
-        expenseModelArrayList.add(new ExpenseModel("Food", "60"));
-        expenseModelArrayList.add(new ExpenseModel("Food", "60"));
-        expenseModelArrayList.add(new ExpenseModel("Food", "60"));
-        expenseModelArrayList.add(new ExpenseModel("Food", "60"));
-        expenseModelArrayList.add(new ExpenseModel("Food", "60"));
-        expenseModelArrayList.add(new ExpenseModel("Food", "60"));
-        expenseModelArrayList.add(new ExpenseModel("Food", "60"));
-        expenseModelArrayList.add(new ExpenseModel("Food", "60"));
-        expenseModelArrayList.add(new ExpenseModel("Food", "60"));
-        expenseModelArrayList.add(new ExpenseModel("Food", "60"));
-        expenseModelArrayList.add(new ExpenseModel("Food", "60"));
-        expenseModelArrayList.add(new ExpenseModel("Food", "60"));
-        expenseModelArrayList.add(new ExpenseModel("Food", "60"));
-        expenseModelArrayList.add(new ExpenseModel("Food", "60"));
-        expenseModelArrayList.add(new ExpenseModel("Food", "60"));
-        expenseModelArrayList.add(new ExpenseModel("Food", "60"));
-        expenseModelArrayList.add(new ExpenseModel("Food", "60"));
-        expenseModelArrayList.add(new ExpenseModel("Food", "60"));
 
-        RecyclerExpenseAdapter adapter= new RecyclerExpenseAdapter(this, expenseModelArrayList);
         recyclerView.setAdapter(adapter);
     }
 

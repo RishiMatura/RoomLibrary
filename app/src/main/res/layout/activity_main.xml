@@ -56,5 +56,21 @@
         app:layout_constraintVertical_bias="0.68"
         tools:ignore="HardcodedText" />
 
+    <Button
+        android:id="@+id/btnRecyclerView"
+        android:layout_width="409dp"
+        android:layout_height="wrap_content"
+        android:elevation="20sp"
+        android:text="@string/go_to_list"
+        android:textColorHighlight="#EA5353"
+        android:textColorLink="#D12626"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.809" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
