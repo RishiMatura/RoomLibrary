@@ -44,6 +44,7 @@ public class RecyclerViewActivity extends AppCompatActivity {
             expenseModelArrayList.add(new ExpenseModel(expense.getTitle(), expense.getAmount()));
         }
 
+
         RecyclerExpenseAdapter adapter= new RecyclerExpenseAdapter(this, expenseModelArrayList);
         recyclerView.setAdapter(adapter);
 
