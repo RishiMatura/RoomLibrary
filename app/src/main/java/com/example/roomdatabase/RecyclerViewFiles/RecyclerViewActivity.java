@@ -34,6 +34,9 @@ public class RecyclerViewActivity extends AppCompatActivity {
 
     }
     public void getRoomData(){
+
+//        Warning !!!! DO NOT CHANGE, SINCE BEING THE DEVELOPER EVEN I DON'T KNOW HOW THIS IS WORKING
+
         DatabaseHelper databaseHelper =  DatabaseHelper.getDB(this);
 
         List<Expense> arrExpense = databaseHelper.expenseDAO().getAllExpense();
