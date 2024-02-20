@@ -9,6 +9,7 @@ import android.util.Log;
 
 import com.example.roomdatabase.DatabaseHelper;
 import com.example.roomdatabase.Expense;
+import com.example.roomdatabase.ExpenseDAO;
 import com.example.roomdatabase.R;
 
 import java.util.ArrayList;
@@ -24,20 +25,25 @@ public class RecyclerViewActivity extends AppCompatActivity {
         setContentView(R.layout.activity_recycler_view);
 
         recyclerView = findViewById(R.id.recyclerExpense);
-
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
-        DatabaseHelper databaseHelper =  DatabaseHelper.getDB(this);
-        RecyclerExpenseAdapter adapter= new RecyclerExpenseAdapter(this, expenseModelArrayList);
 
-        ArrayList<Expense> arrExpense = (ArrayList<Expense>) databaseHelper.expenseDAO().getAllExpense();
+
+        getRoomData();
+
+
+    }
+    public void getRoomData(){
+        DatabaseHelper databaseHelper =  DatabaseHelper.getDB(this);
+
+        List<Expense> arrExpense = databaseHelper.expenseDAO().getAllExpense();
         for (Expense expense : arrExpense) {
             expenseModelArrayList.add(new ExpenseModel(expense.getTitle(), expense.getAmount()));
         }
-        ExpenseModel item1 = new ExpenseModel("Burger", "60");
 
-
+        RecyclerExpenseAdapter adapter= new RecyclerExpenseAdapter(this, expenseModelArrayList);
         recyclerView.setAdapter(adapter);
+
     }
 
 }

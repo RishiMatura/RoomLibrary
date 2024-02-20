@@ -35,8 +35,6 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 String title = edTitle.getText().toString();
                 String amount = edAmount.getText().toString();
-
-
                 databaseHelper.expenseDAO().addTx(
                         new Expense(title,amount)
                 );
@@ -44,6 +42,7 @@ public class MainActivity extends AppCompatActivity {
 
 //                This arrayLis t of Expense named arrExpense will store all the entries entered by the user.
 //                stores a collection of Expense objects, each representing a different expense entry.
+
                 ArrayList<Expense> arrExpense = (ArrayList<Expense>) databaseHelper.expenseDAO().getAllExpense();
                 for(int i = 0; i<arrExpense.size(); i++){
                     Log.d("Data", "Title "+arrExpense.get(i).getTitle()+" Amount "+arrExpense.get(i).getAmount());

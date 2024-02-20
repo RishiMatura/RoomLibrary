@@ -9,14 +9,17 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.roomdatabase.Expense;
 import com.example.roomdatabase.R;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.zip.Inflater;
 
 public class RecyclerExpenseAdapter extends RecyclerView.Adapter<RecyclerExpenseAdapter.ViewHolder> {
 
     Context context;
+
     ArrayList<ExpenseModel> expenseModelArrayList;
 
     public RecyclerExpenseAdapter(Context context, ArrayList<ExpenseModel> expenseModelArrayList) {
@@ -41,7 +44,7 @@ public class RecyclerExpenseAdapter extends RecyclerView.Adapter<RecyclerExpense
 
     @Override
     public int getItemCount() {
-        return expenseModelArrayList.size()-1;
+        return expenseModelArrayList.size();
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
