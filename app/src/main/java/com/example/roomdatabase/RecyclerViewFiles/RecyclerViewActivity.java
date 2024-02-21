@@ -17,7 +17,7 @@ import java.util.List;
 
 public class RecyclerViewActivity extends AppCompatActivity {
     RecyclerView recyclerView;
-//    ArrayList<ExpenseModel> expenseModelArrayList = new ArrayList<>();
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
@@ -37,16 +37,58 @@ public class RecyclerViewActivity extends AppCompatActivity {
 
 //        Warning !!!! DO NOT CHANGE, SINCE BEING THE DEVELOPER EVEN I DON'T KNOW HOW THIS IS WORKING !!!
 
-        DatabaseHelper databaseHelper =  DatabaseHelper.getDB(this);
+/*       Date Feb 21, 2024.
+        I think I have figured out the working of both the methods(WAYS),
+        1ST METHOD:
+        EXPLANATION:
 
-        List<Expense> arrExpense = databaseHelper.expenseDAO().getAllExpense();
-//        for (Expense expense : arrExpense) {
-//            expenseModelArrayList.add(new ExpenseModel(expense.getTitle(), expense.getAmount()));
-//        }
+        1st in the current way we are using an ArrayList<ExpenseModel> to hold the data for our RecyclerView.
+
+        This ArrayList is populated by iterating over the list of Expense objects obtained from the
+        database and converting each Expense object into an ExpenseModel object.
+        Then, we pass this ArrayList to the adapter, which is responsible for binding the data to the RecyclerView.
+
+        This gives an extra layer of abstraction in comparison to the 2nd METHOD.
+
+        *-------------------------------------------------------------------------------------------------------------*
+
+        2nd METHOD:
+
+        JUST uncomment Method 2 block and you will find the usage to the 2nd METHOD.
+        EXPLANATION:
+
+        In the updated code, I have removed the ExpenseModel class and directly passed a List<Expense> to the adapter
+        instead of creating an intermediate list of ExpenseModel objects.
+
+        So, instead of converting Expense objects into ExpenseModel objects, I'm just passing the Expense objects
+        directly to the adapter. This makes the code cleaner and easier to understand because I'm not adding
+        unnecessary complexity by introducing another class.
+
+*/
+    DatabaseHelper databaseHelper =  DatabaseHelper.getDB(this);  //Common in both Methods,
+    // used to instigate the DatabaseHelper class
 
 
-        RecyclerExpenseAdapter adapter= new RecyclerExpenseAdapter(this, arrExpense);
-        recyclerView.setAdapter(adapter);
+        {
+//            METHOD 1
+
+            ArrayList<ExpenseModel> expenseModelArrayList = new ArrayList<>();
+            List<Expense> arrExpense = databaseHelper.expenseDAO().getAllExpense();
+            for (Expense expense : arrExpense) {
+                expenseModelArrayList.add(new ExpenseModel(expense.getTitle(), expense.getAmount()));
+            }
+            RecyclerExpenseAdapter adapter = new RecyclerExpenseAdapter(this, expenseModelArrayList);
+            recyclerView.setAdapter(adapter);
+        }
+
+
+        {
+//            METHOD 2
+
+//            List<Expense> arrExpense = databaseHelper.expenseDAO().getAllExpense();
+//            RecyclerExpenseAdapter adapter = new RecyclerExpenseAdapter(this, arrExpense);
+//            recyclerView.setAdapter(adapter);
+        }
 
     }
 

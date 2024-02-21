@@ -19,10 +19,31 @@ import java.util.zip.Inflater;
 public class RecyclerExpenseAdapter extends RecyclerView.Adapter<RecyclerExpenseAdapter.ViewHolder> {
 
     Context context;
+//    METHOD 1 BELOW:
 
-    List<Expense> expenseModelArrayList;
+//    List<Expense> expenseModelArrayList;
 
-    public RecyclerExpenseAdapter(Context context, List<Expense> expenseModelArrayList) {
+//      METHOD 2 BELOW:
+    ArrayList<ExpenseModel> expenseModelArrayList;
+
+    {
+
+//        METHOD 2  Constructor to ArrayList of ExpenseModel type
+
+
+/*        For method 2, change the constructor's arguments to ArrayList and the declaration also to ArrayList
+        Also use getTitle() and getAmount() methods.
+
+
+    public RecyclerExpenseAdapter(ArrayList < ExpenseModel > expenseModelArrayList) {
+        this.expenseModelArrayList = expenseModelArrayList;
+    }
+ */
+
+    }
+
+
+    public RecyclerExpenseAdapter(Context context, ArrayList<ExpenseModel> expenseModelArrayList) {
         this.context = context;
         this.expenseModelArrayList = expenseModelArrayList;
     }
@@ -38,8 +59,12 @@ public class RecyclerExpenseAdapter extends RecyclerView.Adapter<RecyclerExpense
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        holder.txtTitle.setText(expenseModelArrayList.get(position).getTitle());
-        holder.txtAmount.setText(expenseModelArrayList.get(position).getAmount());
+
+//        holder.txtTitle.setText(expenseModelArrayList.get(position).getTitle());     //(METHOD 2)
+//        holder.txtAmount.setText(expenseModelArrayList.get(position).getAmount());
+
+        holder.txtTitle.setText(expenseModelArrayList.get(position).title);   //(METHOD 1)
+        holder.txtAmount.setText(expenseModelArrayList.get(position).amount);
     }
 
     @Override
