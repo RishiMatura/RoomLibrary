@@ -64,4 +64,8 @@ public class MainActivity extends AppCompatActivity {
             edTitle.setText("");
             edAmount.setText("");
         }
+        public void onResume() {
+            super.onResume();
+            edTitle.requestFocus();
+        }
     }
