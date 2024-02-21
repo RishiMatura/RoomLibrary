@@ -17,7 +17,7 @@ import java.util.List;
 
 public class RecyclerViewActivity extends AppCompatActivity {
     RecyclerView recyclerView;
-    ArrayList<ExpenseModel> expenseModelArrayList = new ArrayList<>();
+//    ArrayList<ExpenseModel> expenseModelArrayList = new ArrayList<>();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
@@ -35,17 +35,17 @@ public class RecyclerViewActivity extends AppCompatActivity {
     }
     public void getRoomData(){
 
-//        Warning !!!! DO NOT CHANGE, SINCE BEING THE DEVELOPER EVEN I DON'T KNOW HOW THIS IS WORKING
+//        Warning !!!! DO NOT CHANGE, SINCE BEING THE DEVELOPER EVEN I DON'T KNOW HOW THIS IS WORKING !!!
 
         DatabaseHelper databaseHelper =  DatabaseHelper.getDB(this);
 
         List<Expense> arrExpense = databaseHelper.expenseDAO().getAllExpense();
-        for (Expense expense : arrExpense) {
-            expenseModelArrayList.add(new ExpenseModel(expense.getTitle(), expense.getAmount()));
-        }
+//        for (Expense expense : arrExpense) {
+//            expenseModelArrayList.add(new ExpenseModel(expense.getTitle(), expense.getAmount()));
+//        }
 
 
-        RecyclerExpenseAdapter adapter= new RecyclerExpenseAdapter(this, expenseModelArrayList);
+        RecyclerExpenseAdapter adapter= new RecyclerExpenseAdapter(this, arrExpense);
         recyclerView.setAdapter(adapter);
 
     }

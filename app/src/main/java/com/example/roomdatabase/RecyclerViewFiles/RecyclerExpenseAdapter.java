@@ -20,9 +20,9 @@ public class RecyclerExpenseAdapter extends RecyclerView.Adapter<RecyclerExpense
 
     Context context;
 
-    ArrayList<ExpenseModel> expenseModelArrayList;
+    List<Expense> expenseModelArrayList;
 
-    public RecyclerExpenseAdapter(Context context, ArrayList<ExpenseModel> expenseModelArrayList) {
+    public RecyclerExpenseAdapter(Context context, List<Expense> expenseModelArrayList) {
         this.context = context;
         this.expenseModelArrayList = expenseModelArrayList;
     }
@@ -38,8 +38,8 @@ public class RecyclerExpenseAdapter extends RecyclerView.Adapter<RecyclerExpense
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        holder.txtTitle.setText(expenseModelArrayList.get(position).title);
-        holder.txtAmount.setText(expenseModelArrayList.get(position).amount);
+        holder.txtTitle.setText(expenseModelArrayList.get(position).getTitle());
+        holder.txtAmount.setText(expenseModelArrayList.get(position).getAmount());
     }
 
     @Override
