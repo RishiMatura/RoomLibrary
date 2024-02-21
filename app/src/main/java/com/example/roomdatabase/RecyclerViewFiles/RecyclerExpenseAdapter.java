@@ -42,7 +42,6 @@ public class RecyclerExpenseAdapter extends RecyclerView.Adapter<RecyclerExpense
 
     }
 
-
     public RecyclerExpenseAdapter(Context context, ArrayList<ExpenseModel> expenseModelArrayList) {
         this.context = context;
         this.expenseModelArrayList = expenseModelArrayList;

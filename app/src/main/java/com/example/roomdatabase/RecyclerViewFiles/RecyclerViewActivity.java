@@ -68,7 +68,6 @@ public class RecyclerViewActivity extends AppCompatActivity {
     DatabaseHelper databaseHelper =  DatabaseHelper.getDB(this);  //Common in both Methods,
     // used to instigate the DatabaseHelper class
 
-
         {
 //            METHOD 1
 
