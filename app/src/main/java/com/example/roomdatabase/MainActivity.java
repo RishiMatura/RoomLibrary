@@ -13,11 +13,15 @@ import android.widget.Toast;
 import com.example.roomdatabase.RecyclerViewFiles.RecyclerViewActivity;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
     EditText edTitle, edAmount;
     Button btnAdd, btnRecyclerView;
+    Button btnDelete;
+    private List<Expense> allExpenses;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,8 +32,12 @@ public class MainActivity extends AppCompatActivity {
         edAmount = findViewById(R.id.enterAmount);
         btnAdd = findViewById(R.id.addButton);
         btnRecyclerView = findViewById(R.id.btnRecyclerView);
+        btnDelete = findViewById(R.id.btnDelete);
+
 
         DatabaseHelper databaseHelper = DatabaseHelper.getDB(MainActivity.this);
+
+        allExpenses = databaseHelper.expenseDAO().getAllExpense();
         btnAdd.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -46,6 +54,24 @@ public class MainActivity extends AppCompatActivity {
                 ArrayList<Expense> arrExpense = (ArrayList<Expense>) databaseHelper.expenseDAO().getAllExpense();
                 for(int i = 0; i<arrExpense.size(); i++){
                     Log.d("Data", "Title "+arrExpense.get(i).getTitle()+" Amount "+arrExpense.get(i).getAmount());
+                }
+            }
+        });
+        btnDelete.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(!allExpenses.isEmpty()){
+                    int lastIndex = allExpenses.size() - 1;
+                    Expense lastExpense = allExpenses.get(lastIndex);
+                    databaseHelper.expenseDAO().deleteTx(lastExpense);
+
+                    // Remove the last expense from the list
+                    allExpenses.remove(lastIndex);
+
+                }
+                else {
+                    // Handle case where there are no expenses to delete
+                    Toast.makeText(MainActivity.this, "No expenses to delete", Toast.LENGTH_SHORT).show();
                 }
             }
         });
@@ -68,4 +94,5 @@ public class MainActivity extends AppCompatActivity {
             super.onResume();
             edTitle.requestFocus();
         }
+//        ADD DELETE BUTTON'S FUNCTIONALITY TOO
     }

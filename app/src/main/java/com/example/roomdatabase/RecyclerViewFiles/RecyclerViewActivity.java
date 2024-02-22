@@ -78,6 +78,7 @@ public class RecyclerViewActivity extends AppCompatActivity {
             }
             RecyclerExpenseAdapter adapter = new RecyclerExpenseAdapter(this, expenseModelArrayList);
             recyclerView.setAdapter(adapter);
+
         }
 
 
