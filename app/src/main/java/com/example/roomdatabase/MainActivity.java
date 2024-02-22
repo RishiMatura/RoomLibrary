@@ -37,7 +37,7 @@ public class MainActivity extends AppCompatActivity {
 
         DatabaseHelper databaseHelper = DatabaseHelper.getDB(MainActivity.this);
 
-        allExpenses = databaseHelper.expenseDAO().getAllExpense();
+
         btnAdd.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -60,19 +60,36 @@ public class MainActivity extends AppCompatActivity {
         btnDelete.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                allExpenses = databaseHelper.expenseDAO().getAllExpense();
                 if(!allExpenses.isEmpty()){
                     int lastIndex = allExpenses.size() - 1;
                     Expense lastExpense = allExpenses.get(lastIndex);
                     databaseHelper.expenseDAO().deleteTx(lastExpense);
 
-                    // Remove the last expense from the list
-                    allExpenses.remove(lastIndex);
-
+//                    allExpenses.remove(lastIndex);        // Remove the last expense from the list
+//                                                          Not needed since while clicking the View ist button the list gets fetched directly from the Room dataset.
+//                                                          So no need to update the List Explicitly.
                 }
                 else {
                     // Handle case where there are no expenses to delete
                     Toast.makeText(MainActivity.this, "No expenses to delete", Toast.LENGTH_SHORT).show();
                 }
+/*
+                  DEV. NOTE FOR BtnDelete (BUTTON TO DELETE THE LAST ENTRY):
+                  #Explanation
+
+                   In this code, the arrExpense list is fetching data directly from the Room database using the DAO method getAllExpense().
+                   This means that whenever we perform a delete operation on the database and fetch the data again using getAllExpense(),
+                   the arrExpense list will automatically reflect the changes made to the database.
+
+                   #Suggestion
+                   You can improvise the design to make change in the RecyclerView by adding in image Button to delete in the RecyclerView itself.
+
+                   #Defects
+                    The code fetches the whole list while deleting the last element which is not good for a good dataset. Use some other ways
+
+*/
+
             }
         });
         btnRecyclerView.setOnClickListener(new View.OnClickListener() {
@@ -94,5 +111,4 @@ public class MainActivity extends AppCompatActivity {
             super.onResume();
             edTitle.requestFocus();
         }
-//        ADD DELETE BUTTON'S FUNCTIONALITY TOO
     }

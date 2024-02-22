@@ -79,6 +79,7 @@ public class RecyclerExpenseAdapter extends RecyclerView.Adapter<RecyclerExpense
             txtTitle = itemView.findViewById(R.id.rowsTitle);
             txtAmount = itemView.findViewById(R.id.rowsAmount);
 
+
         }
     }
 }

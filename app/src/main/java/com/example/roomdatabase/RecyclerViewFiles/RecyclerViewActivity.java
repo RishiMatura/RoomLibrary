@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.util.Log;
 
@@ -28,11 +29,12 @@ public class RecyclerViewActivity extends AppCompatActivity {
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
 
-
         getRoomData();
 
 
+
     }
+    @SuppressLint("NotifyDataSetChanged")
     public void getRoomData(){
 
 //        Warning !!!! DO NOT CHANGE, SINCE BEING THE DEVELOPER EVEN I DON'T KNOW HOW THIS IS WORKING !!!
@@ -78,6 +80,8 @@ public class RecyclerViewActivity extends AppCompatActivity {
             }
             RecyclerExpenseAdapter adapter = new RecyclerExpenseAdapter(this, expenseModelArrayList);
             recyclerView.setAdapter(adapter);
+//            adapter.notifyDataSetChanged();
+
 
         }
 
