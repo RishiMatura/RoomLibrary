@@ -3,14 +3,18 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
+    android:background="@color/white"
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
     <EditText
+        android:background="@color/white"
         android:id="@+id/enterTitle"
+        android:elevation="35sp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:ems="10"
+        android:gravity="center"
         android:hint="Enter Title"
         android:importantForAutofill="no"
         android:inputType="text"
@@ -27,8 +31,11 @@
 
     <EditText
         android:id="@+id/enterAmount"
+        android:background="@color/white"
+        android:elevation="35sp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:gravity="center"
         android:ems="10"
         android:hint="Enter Amount"
         android:importantForAutofill="no"
@@ -45,9 +52,13 @@
 
     <Button
         android:id="@+id/addButton"
+        android:elevation="45sp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:background="@drawable/custom_button"
         android:text="ADD"
+        android:textColor="@color/white"
+android:textAllCaps="false"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
