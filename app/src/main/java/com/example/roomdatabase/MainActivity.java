@@ -65,6 +65,7 @@ public class MainActivity extends AppCompatActivity {
 //                    int lastIndex = allExpenses.size() - 1;
 //                    Expense lastExpense = allExpenses.get(lastIndex);
                     databaseHelper.expenseDAO().deleteLastTx();
+                    Toast.makeText(MainActivity.this, "Removed", Toast.LENGTH_SHORT).show();
 
 //                    allExpenses.remove(lastIndex);        // Remove the last expense from the list
 //                                                          Not needed since while clicking the View ist button the list gets fetched directly from the Room dataset.
