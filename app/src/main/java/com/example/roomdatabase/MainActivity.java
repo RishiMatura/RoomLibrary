@@ -62,9 +62,9 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 allExpenses = databaseHelper.expenseDAO().getAllExpense();
                 if(!allExpenses.isEmpty()){
-                    int lastIndex = allExpenses.size() - 1;
-                    Expense lastExpense = allExpenses.get(lastIndex);
-                    databaseHelper.expenseDAO().deleteTx(lastExpense);
+//                    int lastIndex = allExpenses.size() - 1;
+//                    Expense lastExpense = allExpenses.get(lastIndex);
+                    databaseHelper.expenseDAO().deleteLastTx();
 
 //                    allExpenses.remove(lastIndex);        // Remove the last expense from the list
 //                                                          Not needed since while clicking the View ist button the list gets fetched directly from the Room dataset.

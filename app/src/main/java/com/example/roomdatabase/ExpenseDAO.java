@@ -19,6 +19,6 @@ public interface ExpenseDAO {
     @Update
     void updateTx(Expense expense);
 
-    @Delete
-    void deleteTx(Expense expense);
+    @Query("DELETE FROM Expense WHERE id = (SELECT MAX(id) FROM Expense)")
+    void deleteLastTx();
 }
