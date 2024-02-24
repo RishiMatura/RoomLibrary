@@ -20,7 +20,7 @@ import java.util.List;
 
 public class RecyclerViewActivity extends AppCompatActivity {
     RecyclerView recyclerView;
-    TextView emptyMessageTextView = findViewById(R.id.emptyMessageTextView);
+    TextView emptyMessageTextView;
 
 
     @Override
