@@ -7,6 +7,8 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
+import android.widget.TextView;
 
 import com.example.roomdatabase.DatabaseHelper;
 import com.example.roomdatabase.Expense;
@@ -18,6 +20,8 @@ import java.util.List;
 
 public class RecyclerViewActivity extends AppCompatActivity {
     RecyclerView recyclerView;
+    TextView emptyMessageTextView = findViewById(R.id.emptyMessageTextView);
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,15 +31,16 @@ public class RecyclerViewActivity extends AppCompatActivity {
 
         recyclerView = findViewById(R.id.recyclerExpense);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        emptyMessageTextView = findViewById(R.id.emptyMessageTextView);
 
 
         getRoomData();
 
 
-
     }
+
     @SuppressLint("NotifyDataSetChanged")
-    public void getRoomData(){
+    public void getRoomData() {
 
 //        Warning !!!! DO NOT CHANGE, SINCE BEING THE DEVELOPER EVEN I DON'T KNOW HOW THIS IS WORKING !!!
 
@@ -67,33 +72,47 @@ public class RecyclerViewActivity extends AppCompatActivity {
         unnecessary complexity by introducing another class.
 
 */
-    DatabaseHelper databaseHelper =  DatabaseHelper.getDB(this);  //Common in both Methods,
-    // used to instigate the DatabaseHelper class
+        DatabaseHelper databaseHelper = DatabaseHelper.getDB(this);  //Common in both Methods,
+        // used to instigate the DatabaseHelper class
 
-        {
+
 //            METHOD 1
 
-            ArrayList<ExpenseModel> expenseModelArrayList = new ArrayList<>();
-            List<Expense> arrExpense = databaseHelper.expenseDAO().getAllExpense();
+        ArrayList<ExpenseModel> expenseModelArrayList = new ArrayList<>();
+        List<Expense> arrExpense = databaseHelper.expenseDAO().getAllExpense();
+
+        if (arrExpense.isEmpty()) {
+            // Dataset is empty, show the empty message
+            emptyMessageTextView.setVisibility(View.VISIBLE);
+        } else {
+            // Dataset is not empty, hide the empty message
+            emptyMessageTextView.setVisibility(View.GONE);
+
             for (Expense expense : arrExpense) {
                 expenseModelArrayList.add(new ExpenseModel(expense.getTitle(), expense.getAmount()));
             }
             RecyclerExpenseAdapter adapter = new RecyclerExpenseAdapter(this, expenseModelArrayList);
             recyclerView.setAdapter(adapter);
+        }
+
+//        for (Expense expense : arrExpense) {
+//            expenseModelArrayList.add(new ExpenseModel(expense.getTitle(), expense.getAmount()));
+//        }
+//        RecyclerExpenseAdapter adapter = new RecyclerExpenseAdapter(this, expenseModelArrayList);
+//        recyclerView.setAdapter(adapter);
+
+
 //            adapter.notifyDataSetChanged();
 
 
-        }
-
-
-        {
 //            METHOD 2
 
 //            List<Expense> arrExpense = databaseHelper.expenseDAO().getAllExpense();
 //            RecyclerExpenseAdapter adapter = new RecyclerExpenseAdapter(this, arrExpense);
 //            recyclerView.setAdapter(adapter);
-        }
+
+
+
 
     }
-
 }
