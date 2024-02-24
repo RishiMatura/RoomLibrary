@@ -41,10 +41,11 @@
         android:textStyle="italic"
         app:layout_constraintBottom_toTopOf="@+id/enterTitle"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.768"
+        app:layout_constraintHorizontal_bias="0.766"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/title_1"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintVertical_bias="0.0"
+        tools:ignore="TextSizeCheck" />
 
     <EditText
         android:id="@+id/enterTitle"
@@ -57,7 +58,7 @@
         android:gravity="center"
         android:hint="@string/enter_title"
         android:importantForAutofill="no"
-        android:inputType="text"
+        android:inputType="textCapSentences"
         android:minHeight="48dp"
         android:text=""
         android:textColor="@color/black"

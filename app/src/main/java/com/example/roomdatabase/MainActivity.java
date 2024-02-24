@@ -6,6 +6,8 @@ import androidx.constraintlayout.widget.ConstraintLayout;
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.InputFilter;
+import android.text.InputType;
 import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
@@ -41,7 +43,6 @@ public class MainActivity extends AppCompatActivity implements View.OnTouchListe
         constraintLayout = findViewById(R.id.parentLayout);
 
 
-
         // Attach the onTouchListener to each view
 
 
@@ -53,14 +54,13 @@ public class MainActivity extends AppCompatActivity implements View.OnTouchListe
         constraintLayout.setOnTouchListener(this);
 
 
+
         DatabaseHelper databaseHelper = DatabaseHelper.getDB(MainActivity.this);
 
 
         btnAdd.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
-
 
                 String title = edTitle.getText().toString();
                 String amount = edAmount.getText().toString();
@@ -76,6 +76,7 @@ public class MainActivity extends AppCompatActivity implements View.OnTouchListe
                 for(int i = 0; i<arrExpense.size(); i++){
                     Log.d("Data", "Title "+arrExpense.get(i).getTitle()+" Amount "+arrExpense.get(i).getAmount());
                 }
+
             }
         });
         btnDelete.setOnClickListener(new View.OnClickListener() {
@@ -144,10 +145,7 @@ public class MainActivity extends AppCompatActivity implements View.OnTouchListe
             edTitle.setText("");
             edAmount.setText("");
         }
-        public void onResume() {
-            super.onResume();
-            edTitle.requestFocus();
-        }
+
 
 
 }

@@ -33,10 +33,7 @@ public class RecyclerViewActivity extends AppCompatActivity {
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         emptyMessageTextView = findViewById(R.id.emptyMessageTextView);
 
-
         getRoomData();
-
-
     }
 
     @SuppressLint("NotifyDataSetChanged")

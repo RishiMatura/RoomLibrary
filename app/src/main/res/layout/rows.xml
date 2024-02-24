@@ -23,6 +23,7 @@
             android:layout_height="wrap_content"
             android:layout_margin="5sp"
             android:padding="15sp"
+            android:textColor="@color/black"
             android:text="Title"
             android:textSize="21sp"
             app:layout_constraintStart_toStartOf="parent"
@@ -40,6 +41,7 @@
             android:layout_margin="5sp"
             android:padding="15sp"
             android:text="Amount"
+            android:textColor="@color/black"
             android:textSize="21sp"
             app:layout_constraintBottom_toBottomOf="parent"
 
