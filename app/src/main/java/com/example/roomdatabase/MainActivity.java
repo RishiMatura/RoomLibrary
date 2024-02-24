@@ -1,11 +1,15 @@
 package com.example.roomdatabase;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.constraintlayout.widget.ConstraintLayout;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.MotionEvent;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
@@ -15,14 +19,15 @@ import com.example.roomdatabase.RecyclerViewFiles.RecyclerViewActivity;
 import java.util.ArrayList;
 import java.util.List;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements View.OnTouchListener {
 
     EditText edTitle, edAmount;
     Button btnAdd, btnRecyclerView;
     Button btnDelete;
     private List<Expense> allExpenses;
+    ConstraintLayout constraintLayout;
 
-
+    @SuppressLint("ClickableViewAccessibility")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -33,6 +38,19 @@ public class MainActivity extends AppCompatActivity {
         btnAdd = findViewById(R.id.addButton);
         btnRecyclerView = findViewById(R.id.btnRecyclerView);
         btnDelete = findViewById(R.id.btnDelete);
+        constraintLayout = findViewById(R.id.parentLayout);
+
+
+
+        // Attach the onTouchListener to each view
+
+
+        edTitle.setOnTouchListener(this);
+        edAmount.setOnTouchListener(this);
+        btnAdd.setOnTouchListener(this);
+        btnRecyclerView.setOnTouchListener(this);
+        btnDelete.setOnTouchListener(this);
+        constraintLayout.setOnTouchListener(this);
 
 
         DatabaseHelper databaseHelper = DatabaseHelper.getDB(MainActivity.this);
@@ -41,6 +59,9 @@ public class MainActivity extends AppCompatActivity {
         btnAdd.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
+
+
                 String title = edTitle.getText().toString();
                 String amount = edAmount.getText().toString();
                 databaseHelper.expenseDAO().addTx(
@@ -60,6 +81,7 @@ public class MainActivity extends AppCompatActivity {
         btnDelete.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
                 allExpenses = databaseHelper.expenseDAO().getAllExpense();
                 if(!allExpenses.isEmpty()){
 //                    int lastIndex = allExpenses.size() - 1;
@@ -90,7 +112,6 @@ public class MainActivity extends AppCompatActivity {
                     The code fetches the whole list while deleting the last element which is not good for a good dataset. Use some other ways
 
 */
-
             }
         });
         btnRecyclerView.setOnClickListener(new View.OnClickListener() {
@@ -103,6 +124,21 @@ public class MainActivity extends AppCompatActivity {
 
     }
     @Override
+//    This method is handling the onTouch feature, when the user clicks on anyView or parentLayout, the cursor along with the keyboard disappears.
+    public boolean onTouch(View v, MotionEvent event) {
+        // Check if the touch event is outside the EditText fields
+        if (event.getAction() == MotionEvent.ACTION_DOWN && !(v instanceof EditText)) {
+            // Hide soft keyboard
+            InputMethodManager inputMethodManager = (InputMethodManager) getSystemService(INPUT_METHOD_SERVICE);
+            inputMethodManager.hideSoftInputFromWindow(v.getWindowToken(), 0);
+            // Clear focus from EditText fields
+            edTitle.clearFocus();
+            edAmount.clearFocus();
+        }
+        return false;
+    }
+
+    @Override
     public void onPause() {
         super.onPause();
             edTitle.setText("");
@@ -112,4 +148,6 @@ public class MainActivity extends AppCompatActivity {
             super.onResume();
             edTitle.requestFocus();
         }
-    }
+
+
+}
