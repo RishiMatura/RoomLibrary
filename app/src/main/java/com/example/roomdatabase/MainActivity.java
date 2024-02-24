@@ -69,7 +69,7 @@ public class MainActivity extends AppCompatActivity implements View.OnTouchListe
                 );
                 Toast.makeText(MainActivity.this, "Added", Toast.LENGTH_SHORT).show();
 
-//                This arrayLis t of Expense named arrExpense will store all the entries entered by the user.
+//                This arrayList of Expense named arrExpense will store all the entries entered by the user.
 //                stores a collection of Expense objects, each representing a different expense entry.
 
                 ArrayList<Expense> arrExpense = (ArrayList<Expense>) databaseHelper.expenseDAO().getAllExpense();
@@ -77,6 +77,8 @@ public class MainActivity extends AppCompatActivity implements View.OnTouchListe
                     Log.d("Data", "Title "+arrExpense.get(i).getTitle()+" Amount "+arrExpense.get(i).getAmount());
                 }
 
+                edTitle.setText("");
+                edAmount.setText("");
             }
         });
         btnDelete.setOnClickListener(new View.OnClickListener() {
