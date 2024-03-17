@@ -6,8 +6,6 @@ import androidx.constraintlayout.widget.ConstraintLayout;
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
-import android.text.InputFilter;
-import android.text.InputType;
 import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
@@ -16,6 +14,8 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.example.roomdatabase.Database.DatabaseHelper;
+import com.example.roomdatabase.Database.Expense;
 import com.example.roomdatabase.RecyclerViewFiles.RecyclerViewActivity;
 
 import java.util.ArrayList;

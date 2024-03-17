@@ -6,13 +6,11 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.annotation.SuppressLint;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
 
-import com.example.roomdatabase.DatabaseHelper;
-import com.example.roomdatabase.Expense;
-import com.example.roomdatabase.ExpenseDAO;
+import com.example.roomdatabase.Database.DatabaseHelper;
+import com.example.roomdatabase.Database.Expense;
 import com.example.roomdatabase.R;
 
 import java.util.ArrayList;
